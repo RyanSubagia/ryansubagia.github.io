@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pet Simulator</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+    .pet {
+        width: 100px;
+        height: 100px;
+        background-color: #ffcc00; /* yellow */
+        border: 2px solid #333;
+        border-radius: 10px;
+        position: absolute;
+    }
+    .controls {
+        margin-top: 20px;
+    }
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border: none;
+        background-color: #4CAF50; /* green */
+        color: white;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+    button:hover {
+        background-color: #45a049; /* darker green */
+    }
+</style>
+</head>
+<body>
+    <h1>Pet Simulator</h1>
+    <div class="pet"></div>
+    <div class="controls">
+        <button onclick="feedPet()">Feed</button>
+        <button onclick="playWithPet()">Play</button>
+        <button onclick="cleanPet()">Clean</button>
+    </div>
+
+    <script>
+        // Basic pet object
+        let pet = {
+            hunger: 50,
+            happiness: 50,
+            cleanliness: 50
+        };
+
+        // Function to update pet's status
+        function updatePetStatus() {
+            document.querySelector('.pet').style.backgroundColor = `hsl(${pet.happiness * 1.2}, 100%, 50%)`;
+        }
+
+        // Function to feed the pet
+        function feedPet() {
+            pet.hunger -= 10;
+            pet.happiness += 5;
+            if (pet.hunger < 0) pet.hunger = 0;
+            if (pet.happiness > 100) pet.happiness = 100;
+            updatePetStatus();
+        }
+
+        // Function to play with the pet
+        function playWithPet() {
+            pet.happiness += 10;
+            pet.hunger += 5;
+            if (pet.happiness > 100) pet.happiness = 100;
+            if (pet.hunger > 100) pet.hunger = 100;
+            updatePetStatus();
+        }
+
+        // Function to clean the pet
+        function cleanPet() {
+            pet.cleanliness += 20;
+            if (pet.cleanliness > 100) pet.cleanliness = 100;
+            updatePetStatus();
+        }
+
+        // Function to update pet's position based on mouse movement
+        document.addEventListener('mousemove', function(event) {
+            const petElement = document.querySelector('.pet');
+            const petWidth = petElement.offsetWidth;
+            const petHeight = petElement.offsetHeight;
+            const offsetX = petWidth / 2;
+            const offsetY = petHeight / 2;
+            const mouseX = event.pageX;
+            const mouseY = event.pageY;
+            const easeAmount = 0.1;
+            petElement.style.left = (mouseX - offsetX) + 'px';
+            petElement.style.top = (mouseY - offsetY) + 'px';
+        });
+
+        // Initial update
+        updatePetStatus();
+    </script>
+</body>
+</html>
