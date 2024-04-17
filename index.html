@@ -1,103 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pet Simulator</title>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        text-align: center;
-    }
-    .pet {
-        width: 100px;
-        height: 100px;
-        background-color: #ffcc00; /* yellow */
-        border: 2px solid #333;
-        border-radius: 10px;
-        position: absolute;
-    }
-    .controls {
-        margin-top: 20px;
-    }
-    button {
-        padding: 10px 20px;
-        font-size: 16px;
-        cursor: pointer;
-        border: none;
-        background-color: #4CAF50; /* green */
-        color: white;
-        border-radius: 5px;
-        transition: background-color 0.3s;
-    }
-    button:hover {
-        background-color: #45a049; /* darker green */
-    }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
 <body>
-    <h1>Pet Simulator</h1>
-    <div class="pet"></div>
-    <div class="controls">
-        <button onclick="feedPet()">Feed</button>
-        <button onclick="playWithPet()">Play</button>
-        <button onclick="cleanPet()">Clean</button>
+    <div class="container">
+        <div class="main">
+            <div class="topbar">
+                <a href="">Paragraph Settings</a>
+            </div>
+            <div class="row">
+                <div class="col-md-12 mt-1">
+                    <div class="card mb-3 content">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h5>Name of your theme:</h5>
+                                </div>
+                                <div class="col-md-5">
+                                    <input type="text" class="text-profile" id="validationNama">
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h5>Color of your background:</h5>
+                                </div>
+                                <div class="col-md-5">
+                                    <input type="color" class="text-profile" id="validationBackground">
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h5>Color of heading 1:</h5>
+                                </div>
+                                <div class="col-md-5">
+                                    <input type="color" class="text-profile" id="validationHeading1">
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h5>Alignment of heading 1:</h5>
+                                </div>
+                                <div class="col-md-5">
+                                    <select class="text-trofile" id="validationGender">
+                                        <option selected disabled value="">-- Choose the Alignment --</option>
+                                        <option>Left</option>
+                                        <option>Center</option>
+                                        <option>Right</option>
+                                        <option>Justify</option>
+                                      </select>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h5>Color of paragraph:</h5>
+                                </div>
+                                <div class="col-md-5">
+                                    <input type="color" class="text-profile" id="validationParagraph">
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h5>Font size of paragraph:</h5>
+                                </div>
+                                <div class="col-md-5">
+                                    <input type="number" class="text-profile" id="validationPhone">px
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <button class="btn btn-primary" type="submit">Save</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <script>
-        // Basic pet object
-        let pet = {
-            hunger: 50,
-            happiness: 50,
-            cleanliness: 50
-        };
-
-        // Function to update pet's status
-        function updatePetStatus() {
-            document.querySelector('.pet').style.backgroundColor = `hsl(${pet.happiness * 1.2}, 100%, 50%)`;
-        }
-
-        // Function to feed the pet
-        function feedPet() {
-            pet.hunger -= 10;
-            pet.happiness += 5;
-            if (pet.hunger < 0) pet.hunger = 0;
-            if (pet.happiness > 100) pet.happiness = 100;
-            updatePetStatus();
-        }
-
-        // Function to play with the pet
-        function playWithPet() {
-            pet.happiness += 10;
-            pet.hunger += 5;
-            if (pet.happiness > 100) pet.happiness = 100;
-            if (pet.hunger > 100) pet.hunger = 100;
-            updatePetStatus();
-        }
-
-        // Function to clean the pet
-        function cleanPet() {
-            pet.cleanliness += 20;
-            if (pet.cleanliness > 100) pet.cleanliness = 100;
-            updatePetStatus();
-        }
-
-        // Function to update pet's position based on mouse movement
-        document.addEventListener('mousemove', function(event) {
-            const petElement = document.querySelector('.pet');
-            const petWidth = petElement.offsetWidth;
-            const petHeight = petElement.offsetHeight;
-            const offsetX = petWidth / 2;
-            const offsetY = petHeight / 2;
-            const mouseX = event.pageX;
-            const mouseY = event.pageY;
-            const easeAmount = 0.1;
-            petElement.style.left = (mouseX - offsetX) + 'px';
-            petElement.style.top = (mouseY - offsetY) + 'px';
-        });
-
-        // Initial update
-        updatePetStatus();
-    </script>
-</body>
 </html>
